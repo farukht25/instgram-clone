@@ -1,23 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import SignUpModul from './components/SignUpModul';
+import Post from './components/Post';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
+import { useEffect, useState } from 'react';
+import {db} from './firebase'
+
 
 function App() {
+  const [posts,setPosts] =useState([])
+
+  useEffect(()=>{
+
+    db.collection('posts').onSnapshot(snapshot=>{
+      setPosts(snapshot.docs.map(doc=>({
+        id:doc.id,
+        post:doc.data(),
+
+      })))
+    })
+
+    
+  },[])
+
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+     
+      <div className='container'>
+        {posts.map(({id ,post}) => <Post key={id} imageURL={post.imageURL} postUser={post.postUser} caption={post.caption} />)}
+      </div>
     </div>
   );
 }
