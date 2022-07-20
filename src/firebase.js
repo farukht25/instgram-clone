@@ -1,22 +1,32 @@
-import  firebase from "firebase";
+import firebase from "firebase";
 
-
-
-
-
+const {
+  REACT_APP_APIKEY,
+  REACT_APP_AUTH_DOMAIN,
+  REACT_APP_DATABASE_URL,
+  REACT_APP_PROJECT_ID,
+  REACT_APP_STORAGE_BUCKET,
+  REACT_APP_MESSENGING_SENDER_ID,
+  REACT_APP_APP_ID
+} = process.env;
 
 const firebaseApp = firebase.initializeApp( {
-  apiKey: "AIzaSyA0DiLs6B_dL-2rSYx9PwJJ0dDiC4CSjm8",
-  authDomain: "instagram-clone-b66d2.firebaseapp.com",
-  databaseURL: "https://instagram-clone-b66d2-default-rtdb.firebaseio.com",
-  projectId: "instagram-clone-b66d2",
-  storageBucket: "instagram-clone-b66d2.appspot.com",
-  messagingSenderId: "744628290519",
-  appId: "1:744628290519:web:ad7b73ada3005cbea30192"
+  apiKey: REACT_APP_APIKEY,
+  authDomain: REACT_APP_AUTH_DOMAIN,
+  databaseURL: REACT_APP_DATABASE_URL,
+  projectId: REACT_APP_PROJECT_ID,
+  storageBucket: REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: REACT_APP_MESSENGING_SENDER_ID,
+  appId: REACT_APP_APP_ID
 });
 
- const db = firebaseApp.firestore()
-const auth=firebase.auth()
-const storage=firebase.storage()
 
-export {db};
+const db = firebaseApp.firestore()
+const auth = firebase.auth()
+const storage = firebase.storage()
+
+export {
+  db,
+  auth,
+  storage
+};

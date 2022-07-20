@@ -8,18 +8,22 @@
 }
 
 .header{
+  position: sticky;
+  top:0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
+  /* height: 100px; */
+  object-fit: contain;
   background-color: #f7f3f8;
+  z-index: 1;
+  
 }
 .post{
   max-width: 500px;
   margin: 20px;
   border: 1px solid lightgray;
   border-radius: 8px;
-  padding-bottom: 20px;
   
 }
 .post-image{
@@ -57,11 +61,58 @@ margin: 5px;
 .form__group{
 display: flex;
 flex-direction: row;
-justify-content: space-around;
+justify-content: space-between;
 padding: 2px;
 }
 
 .form__input{
-  padding: 2px;
+  padding: 4px;
   
+}
+.header__button_group{
+  display: flex;
+  
+}
+
+.fileUpload{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fileUpload__progressbar{
+  display: flex;
+  justify-content: space-around;
+  margin: 2%;
+}
+
+.fileUpload__filepicker{
+margin: 3%;
+}
+
+.post__commentBox{
+  display: flex;
+  margin-top: 10px;
+
+}
+.post__input{
+  flex:1;
+  border: none;
+  padding: 10px;
+  border-top: 1px solid lightgray;
+}
+.post__button{
+  flex:0;
+  
+}
+
+.post__comments{
+  padding: 10px;
+}
+
+.container{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

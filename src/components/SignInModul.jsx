@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Input } from '@mui/material';
 import { FormLabel } from '@mui/material';
-import { UserAuth } from '../contexts/AuthContext'
+import {UserAuth} from '../contexts/AuthContext'
 
 
 const style = {
@@ -26,21 +26,20 @@ export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { createUser } = UserAuth();
+  const { signIn } = UserAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
 
-  const handleSignUp = (event) => {
+  const handleSignIn=(event)=>{
     event.preventDefault();
-    createUser(email, password,username)
+    signIn(email,password)
 
   }
   return (
-
+    
 
     <div>
-      <Button onClick={handleOpen}>Sign Up</Button>
+      <Button onClick={handleOpen}>Sign In</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -48,22 +47,19 @@ export default function BasicModal() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <form onSubmit={e => handleSignUp(e)}>
+          <form onSubmit={e=>handleSignIn(e)}>
             <div className='form'>
               <div className='form__group'>
-                <FormLabel className='form__label'>Email</FormLabel>
-                <Input onChange={(e) => setEmail(e.target.value)} className='form__input' placeholder='Enter Email' type='email' />
+                <FormLabel>Email</FormLabel>
+                <Input onChange={(e)=> setEmail(e.target.value)} className='form__input' placeholder='Enter Email' type='email' />
               </div>
+              
               <div className='form__group'>
-                <FormLabel className='form__label'>Username</FormLabel>
-                <Input onChange={(e) => setUsername(e.target.value)} className='form__input' placeholder='Enter User Name' type='text' />
+                <FormLabel>Password</FormLabel>
+                <Input onChange={(e)=> setPassword(e.target.value)} className='form__input' placeholder='Enter Password' type='password' />
+                
               </div>
-              <div className='form__group'>
-                <FormLabel className='form__label'>Password</FormLabel>
-                <Input onChange={(e) => setPassword(e.target.value)} className='form__input' placeholder='Enter Password' type='password' />
-
-              </div>
-              <Button type='submit'>Sign Up</Button>
+              <Button type='submit'>Sign In</Button>
             </div>
           </form>
         </Box>
